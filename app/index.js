@@ -1,6 +1,10 @@
 var sub = require('./sub');
+var $ = require('jquery');
+var moment = require('moment');
 var app = document.createElement('div');
 app.innerHTML = 'hello index.js';
 app.appendChild(sub());
 document.body.appendChild(app);
-require('./main.css');
+$('body').append('look at me!now is '+ moment().format());
+// require('./css/main.css');
+require('./css/main.scss');
