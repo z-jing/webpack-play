@@ -8,6 +8,7 @@ var APP_PATH = path.resolve(ROOT_PATH, 'app');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 
 module.exports = {
+  mode: "development",
   entry: {
     app: path.resolve(APP_PATH, 'index.js'),
     // 添加要打包在vendors里的库
@@ -16,7 +17,9 @@ module.exports = {
   // entry: APP_PATH,
   output: {
     path: BUILD_PATH,
-    filename: 'bundle.js'
+    pathinfo: true,   // 告诉webpack在bundle中引入「所包含模块信息」的相关注释。此选项默认值是false
+    filename: 'bundle.[name].js',
+    // chunkFilename: '[name].chunk.js',
   },
   devServer: {
     historyApiFallback: true,
@@ -34,7 +37,7 @@ module.exports = {
         loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
       },
       // { test: /\.scss$/,
-      //   use: [ { loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader'} ]
+      //   use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
       // },
       // { test: /\.(jpg|png|jpeg)$/, use: [{loader: 'url?limit=40000'}]}
       {
